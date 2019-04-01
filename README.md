@@ -20,7 +20,7 @@ The questions are:
 
 ---
 
-### 2.Connection details to your database which hold your dataset (if any)
+### 2. Connection details to your database which hold your dataset (if any)
 
 - Neo4J server setup in AWS Lightsail, connection string show as below
 
@@ -122,13 +122,13 @@ MATCH (p:User) RETURN p.mid, p.name, p.followers_count + p.friends_count as FOLL
 
 ![cypher-result](./misc/result-cypher.png)
 
-#### Data Collected from real time API (Reference)
+##### Data Collected from real time API (Reference)
 
 ![cypher-result-ref](./misc/result-cypher-ref.png)
 
 ---
 
-> 4.What have you learnt through this task?
+### 4.What have you learnt through this task
 
 - Neo4J Graph Database and basic Cypher Query  
 - Twitter Data Structure and streaming API
@@ -352,6 +352,7 @@ Check collector Status using api <http://13.250.54.73:8080/twitter/collector/sta
 
 - Use Maven the package, see ***build.sh***
 - Deploy script to move the package, see ***deploy.sh***
+- Use version, build number and DevOps release branch for release tracking
 - Data Tracability, all data captured with unique ID
   - Streaming code use ***MERGE*** if record already exits
   - Setup GraphDB for record uniqueness
