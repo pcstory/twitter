@@ -13,7 +13,7 @@ The questions are:
 
 ### 1. Code
 
-- See Github <https://github.com/pcstory/twitter-challenge>
+- See Github <https://github.com/pcstory/twitter>
   - Data Streaming Code from Twitter
   - Neo4J Cypher Scripts
   - Server Scripts for build and deploy
