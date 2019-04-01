@@ -40,8 +40,6 @@ Development Process...
 - Monitor if collected enough data(Tweet and User) with scripts in my Mac...
 
 ```bash
-watch -n 15 './cypher-shell -u neo4j -p ***** -a bolt://localhost:7687 --non-interactive "MATCH (a)-[:RETWEET]->(m) RETURN a.mid, a.name, count(a) as occr order by occr DESC limit 10;"'
-
 watch -n 5 './cypher-shell -u neo4j -p ***** -a bolt://localhost:7687 --non-interactive "MATCH (t:Tweet) RETURN count(t);"'
 ```
 
