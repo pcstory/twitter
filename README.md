@@ -32,6 +32,37 @@ The questions are:
 
 ### 3.The answers to the questions above
 
+Development Process...
+
+- Collect Data using the streaming API with bounding ```{ -130.56, 23.59 }, { -77.09, 48.77 }``` - US location
+- Filter out the data is not **ReTweet**, use regular expression ```\"retweet_count\"\\:[1-9]``` for filtering.
+- Log the raw json from the api for tracing purpose.
+- Monitor if collected enough data(Tweet and User) with scripts in my Mac...
+
+```bash
+watch -n 15 './cypher-shell -u neo4j -p ***** -a bolt://localhost:7687 --non-interactive "MATCH (a)-[:RETWEET]->(m) RETURN a.mid, a.name, count(a) as occr order by occr DESC limit 10;"'
+
+watch -n 5 './cypher-shell -u neo4j -p ***** -a bolt://localhost:7687 --non-interactive "MATCH (t:Tweet) RETURN count(t);"'
+```
+
+- Write Cypher script and API to retrieve the result...
+
+```SQL
+MATCH (p:User) RETURN p.mid AS id, p.name AS name, p.followers_count AS follower_count, p.friends_count as friends_count, p.followers_count + p.friends_count AS total_connected_user ORDER BY total_connected_user DESC LIMIT 1
+
+MATCH (a)-[:RETWEET]->(m)<-[:POSTED]-(d) WHERE a.mid =$top_user_id AND NOT (a.location CONTAINS 'null' OR d.location CONTAINS 'null') RETURN a.location as last_avail_retweet_location, d.location as last_avail_author_location ORDER BY m.twcreated_at DESC LIMIT 1
+
+MATCH (a)-[:RETWEET]->(m)<-[:POSTED]-(d) WHERE NOT (a.location CONTAINS 'null' OR d.location CONTAINS 'null') RETURN a.mid AS id, a.name AS name, count(a) as retweet_count order by retweet_count DESC limit 1
+
+```
+
+- Use Google Matrix API to calculate the distance dynamically. ```https://maps.googleapis.com/maps/api/distancematrix/json```
+
+- Integrate everything into the api - Data Collection, Cypher Scripts etc.
+- Develop deployment script and push to AWS.
+
+---
+
 > P/S. Server IP Address might change (AWS Lightsail Environment)
 
 ---
@@ -63,6 +94,8 @@ URL: <http://13.250.54.73:8080/twitter/top/user-retweet>
 #### Answer 3
 
 URL: <http://13.250.54.73:8080/twitter/top/user-connected-user>
+
+> Distance caclulated with [Google DistantMatrix API](https://developers.google.com/maps/documentation/distance-matrix/start)
 
 ```JSON
 {"id":79293791,"name":"rihanna","follower_count":90272320,"friends_count":1086,"total_connected_user":90273406}
@@ -335,8 +368,8 @@ CREATE CONSTRAINT ON (T:Tweet) ASSERT T.mid IS UNIQUE;
 
 #### Production Recommendation
 
-- Construct unit test and automated SIT
-- Configure DevOps automated deployment with Jenkins
+- Construct more unit test and automated SIT
+- Configure DevOps/CICD automated deployment with Jenkins
 - Use queue technique such as Kafka to increase streaming performance and achieve high availability
 - Use Docker and Kubenetes for scalling the nodes
 - Data Streaming Code

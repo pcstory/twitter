@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.chyn</groupId>
 	<artifactId>allianz</artifactId>
-	<version>0.0.1-SNAPSHOT-040119-0043</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
