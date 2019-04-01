@@ -371,11 +371,11 @@ CREATE CONSTRAINT ON (T:Tweet) ASSERT T.mid IS UNIQUE;
 - Construct more unit test and automated SIT
 - Configure DevOps/CICD automated deployment with Jenkins
 - Use queue technique such as Kafka to increase streaming performance and achieve high availability
-- Use Docker and Kubenetes for scalling the nodes
+- Use Docker and Kubenetes for scalling the nodes OR use serverless architecture
 - Data Streaming Code
   - Proper logging in log file, currently the logging is not complete
   - Parameterize the User and Password in the Data Streaming Code
-- Redefine the data model to store in Neo4J for future integration, I only store the mininum data needed for the question
+- Redefine the data model to store in Neo4J for future integration, I only store the mininum data needed for the question. Store the raw file in cheap storage such as S3
 - Explore other endpoint to collect more User Data
 - GraphDB
   - Should have better way to write the query (Will explore more if I have more time)
