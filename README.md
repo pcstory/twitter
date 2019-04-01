@@ -25,7 +25,7 @@ The questions are:
 - Neo4J server setup in AWS Lightsail, connection string show as below
 
 ```bash
-./cypher-shell -a bolt://13.250.54.73:7687 -u neo4j -p <In Email>
+./cypher-shell -a bolt://13.250.54.73:7687 -u neo4j -p *****
 ```
 
 ---
@@ -35,7 +35,7 @@ The questions are:
 Development Process...
 
 - Collect Data using the streaming API with bounding ```{ -130.56, 23.59 }, { -77.09, 48.77 }``` - US location
-- Filter out the data is not **ReTweet**, use regular expression ```\"retweet_count\"\\:[1-9]``` for filtering.
+- Filter out the data is not **ReTweet**, use regular expression ```retweet_count``` large than 0 for filtering.
 - Log the raw json from the api for tracing purpose.
 - Monitor if collected enough data(Tweet and User) with scripts in my Mac...
 
@@ -149,7 +149,8 @@ MATCH (p:User) RETURN p.mid, p.name, p.followers_count + p.friends_count as FOLL
 ### 6. Why did you choose the language you have used to answer the above questions
 
 - **Java**. For productionalize, compiled language normally safer and faster than scripting language in terms of performacne, more suitable for production implementation.
-- Initially I have choosen Python, later I found out there's Streaming API ready in Java which is quite simple to use and I switch to Java.
+- Given a short period of time, I worry dynamic type language solution break easily due to not enough testing.
+- Initially I have choosen Python, later I found out there's Streaming API ready in Java and I am more familiar with Java.
 
 ---
 
