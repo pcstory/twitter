@@ -79,7 +79,7 @@ URL: <http://13.250.54.73:8080/twitter/top/user-retweet>
 
 #### Answer 2
 
-URL: <http://13.250.54.73:8080/twitter/top/user-retweet>
+URL: <http://13.250.54.73:8080/twitter/top/user-retweet/last-distance>
 
 ```JSON
 {"last_avail_author_location":"East Houston, Houston","distance":"1,550 km","last_avail_retweet_location":"Savannah"}
