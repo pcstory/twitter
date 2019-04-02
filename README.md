@@ -380,3 +380,4 @@ CREATE CONSTRAINT ON (T:Tweet) ASSERT T.mid IS UNIQUE;
 - GraphDB
   - Should have better way to write the query (Will explore more if I have more time)
 - Setup security for the API (Token keys, OAuth ... etc)
+- Implement caching, avoiding lookup via IO
